@@ -1,0 +1,38 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const entries = [
+  {
+    day: 'WEEK 1: 09/14/2026',
+    title: 'Defined the project direction.',
+    text: 'I outlined an AI-assisted Pointwise Glyph workflow for mesh creation, refinement, and grid-convergence comparisons. I identified mesh qualification, near-wall y+, and solution changes across successively refined grids as the central technical focus.',
+  },
+  {
+    day: 'WEEK 1: 09/15/2026',
+    title: 'Built the portfolio foundation.',
+    text: 'I reviewed classmate Hugh Cairney’s Astro and Tailwind setup, then created a light four-page site with a shared layout. I found the site creation incredibly quick once I narrowed down my stylistic preferences: compact labels, thin rules, square panels, and graph-paper-inspired log cards.',
+  },
+  {
+    day: 'WEEK 1: 09/15/2026',
+    title: 'Compared models for animation generation.',
+    text: 'While building the portfolio Easter eggs, I experimented with both GPT-5.6 Terra and Claude Sonnet 4.6 for generating canvas animations. Claude produced noticeably cleaner results. This further interests me in understanding the optimal use cases of different models, particularly for visual and animation generation.',
+  },
+];
+---
+<BaseLayout title="Dev log" description="Development notes for Madison Taylor Hobbs's AI research portfolio.">
+  <section class="max-w-3xl">
+    <p class="font-mono text-xs tracking-[0.14em] text-red-accent">DEVELOPMENT LOG</p>
+    <h1 class="mt-5 font-display text-5xl font-medium tracking-[-0.06em] sm:text-6xl">Notes from the work.</h1>
+    <p class="mt-6 max-w-2xl leading-7 text-graphite">A concise record of how this project and portfolio are taking shape, including what I asked AI tools to help with and what I reviewed myself.</p>
+
+    <div class="mt-12 grid gap-5">
+      {entries.map((entry) => (
+        <article class="paper-grid border border-rule p-5 sm:p-7">
+          <p class="font-mono text-xs tracking-[0.12em] text-red-accent">{entry.day}</p>
+          <h2 class="mt-6 font-display text-2xl font-medium tracking-[-0.04em]">{entry.title}</h2>
+          <p class="mt-4 max-w-2xl leading-7 text-graphite">{entry.text}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

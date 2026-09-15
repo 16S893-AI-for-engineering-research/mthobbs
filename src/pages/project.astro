@@ -1,0 +1,40 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout title="Project" description="An AI-assisted Pointwise Glyph meshing and grid-convergence workflow.">
+  <section class="max-w-3xl">
+    <p class="font-mono text-xs tracking-[0.14em] text-red-accent">CURRENT PROJECT</p>
+    <h1 class="mt-5 font-display text-5xl font-medium tracking-[-0.06em] sm:text-6xl">AI-assisted CFD meshing and validation.</h1>
+    <p class="mt-7 max-w-2xl text-lg leading-8 text-graphite">
+      A proposed Pointwise Glyph workflow for generating, systematically refining, and qualifying CFD meshes for high-fidelity hypersonic simulations. The workflow automates repeatable preprocessing and verification tasks while retaining engineer review gates before downstream analysis.
+    </p>
+
+    <div class="mt-12 space-y-0 border-y border-rule">
+      <section class="grid gap-5 border-b border-rule py-7 sm:grid-cols-[10rem_1fr]">
+        <p class="font-mono text-xs text-slate-accent">THE PROBLEM</p>
+        <p class="leading-7 text-graphite">High-fidelity hypersonic CFD requires a discretization appropriate to the vehicle geometry, near-wall physics, and flow features of interest. Mesh generation must control surface resolution, boundary-layer spacing, cell-growth rate, topology, and element quality; verification then requires systematically refined grids and traceable comparison of solution quantities.</p>
+      </section>
+      <section class="grid gap-5 border-b border-rule py-7 sm:grid-cols-[10rem_1fr]">
+        <p class="font-mono text-xs text-slate-accent">THE WORKFLOW</p>
+        <ol class="grid gap-3 font-mono text-xs leading-5 text-graphite sm:grid-cols-2">
+          <li><span class="text-red-accent">01</span> Generate or revise Pointwise Glyph scripts.</li>
+          <li><span class="text-red-accent">02</span> Qualify cell metrics and near-wall <code>y+</code>.</li>
+          <li><span class="text-red-accent">03</span> Construct systematic coarse, medium, and fine grids.</li>
+          <li><span class="text-red-accent">04</span> Collect and compare CFD solution quantities.</li>
+        </ol>
+      </section>
+      <section class="grid gap-5 border-b border-rule py-7 sm:grid-cols-[10rem_1fr]">
+        <p class="font-mono text-xs text-slate-accent">EVALUATION</p>
+        <p class="leading-7 text-graphite">Mesh qualification will evaluate cell skewness, aspect ratio, orthogonality, Jacobian or cell-volume validity, and size-transition growth rate. The workflow will assess near-wall resolution through <code>y+</code>, construct defined grid-refinement ratios, and compare solution quantities across grids. Where applicable, verification will include residual and conservation behavior, surface pressure and heating, shock structure, and formal grid-convergence measures such as Richardson extrapolation or Grid Convergence Index (GCI).</p>
+      </section>
+      <section class="grid gap-5 border-b border-rule py-7 sm:grid-cols-[10rem_1fr]">
+        <p class="font-mono text-xs text-slate-accent">WHY IT MATTERS</p>
+        <p class="leading-7 text-graphite">In coupled fluid–structure interaction analyses, the structural response depends on aerodynamic and aerothermal loads supplied by the flow solution. The resolution and quality of the fluid mesh therefore affect the fidelity of the loads transferred to the structural model, making mesh verification a prerequisite for credible coupled predictions.</p>
+      </section>
+      <section class="grid gap-5 py-7 sm:grid-cols-[10rem_1fr]">
+        <p class="font-mono text-xs text-slate-accent">BOUNDARIES AND REFERENCE DATA</p>
+        <p class="leading-7 text-graphite">This public portfolio will use only publicly available vehicle geometries, flight conditions, and experimental or computational reference data. Candidate benchmark cases include the RAM-C I, RAM-C II, and RAM-C III flight-test series where sufficient public documentation is available. These cases will support comparison of mesh topology and resolution strategy, as well as CFD solution quantities, against published flowfield measurements and reference results. Proprietary, sensitive, export-controlled, and employer-owned data will not be included.</p>
+      </section>
+    </div>
+  </section>
+</BaseLayout>

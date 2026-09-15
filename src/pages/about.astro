@@ -1,0 +1,273 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import headshot from '../assets/madison-t-hobbs-headshot.jpg';
+import transporterPatch from '../assets/transporter-9-patch.png';
+import milesCartoon from '../assets/miles-cartoon.jpg';
+const milesCartoonSrc = milesCartoon.src;
+---
+<BaseLayout title="About">
+  <section class="max-w-3xl">
+    <p class="font-mono text-xs tracking-[0.14em] text-red-accent">ABOUT</p>
+    <div class="mt-5 flex items-end justify-between gap-6">
+      <h1 class="font-display text-5xl font-medium tracking-[-0.06em] sm:text-6xl">Madison Taylor Hobbs</h1>
+      <figure class="w-28 shrink-0 border border-rule bg-paper p-1 sm:w-36">
+        <img src={headshot.src} width={headshot.width} height={headshot.height} alt="Madison Taylor Hobbs" class="aspect-square w-full object-cover" />
+      </figure>
+    </div>
+
+    <div class="mt-10 grid gap-10 border-t border-rule pt-7 sm:grid-cols-[10rem_1fr]">
+      <p class="font-mono text-xs text-slate-accent">RESEARCH</p>
+      <div class="space-y-5 leading-7 text-graphite">
+        <p>I am a second-year MathWorks Fellow and a fourth-year graduate student in MIT’s Department of Aeronautics and Astronautics. I am a researcher in the Hypersonics Research Laboratory, advised by Professor Wesley L. Harris. My current work focuses on modeling the effects of pyrolysis and ablation on electron density in hypersonic wakes, with the goal of improving predictions of communications blackout during atmospheric re-entry.</p>
+        <p>I am interested in coupled aerothermal-structural analysis for hypersonic vehicles, where model fidelity depends on the interaction among flow, thermal-protection materials, and structural response. This interest informs my work in fluid–structure interaction. In the spring of 2027, I will begin research on computational buckling methods and fatigue prediction for hypersonic inflatable aerodynamic decelerators (HIADs), advancing tools that couple structural response with high-fidelity aerothermal simulation.</p>
+      </div>
+    </div>
+
+    <div class="mt-10 grid gap-10 border-t border-rule pt-7 sm:grid-cols-[10rem_1fr]">
+      <p class="font-mono text-xs text-slate-accent">FOUNDATION</p>
+      <div class="space-y-5 leading-7 text-graphite">
+        <p>I am originally from South Orange, New Jersey. Much like many fellow New Jerseyans, I will probably keep trying to convince you that New Jersey is one of the best states. With both sides of my family from Brooklyn, New York, I have also inherited an allegiance to and love of NYC. Wanting to explore the opposite coast with the country’s largest aerospace presence, I attended Harvey Mudd College in Claremont, California as a President’s Scholar.</p>
+        <p>My interest in computational engineering began in my first continuum mechanics course and led me to structural dynamics and nonlinear-vibrations courses throughout Harvey Mudd. I earned a B.S. with Distinction through an Individual Program of Studies in Applied Dynamics, with a minor in Classics.</p>
+      </div>
+    </div>
+
+    <div class="mt-10 grid gap-10 border-t border-rule pt-7 sm:grid-cols-[10rem_1fr]">
+      <p class="font-mono text-xs text-slate-accent">INDUSTRY</p>
+      <div class="space-y-5 leading-7 text-graphite">
+        <p>I spent three summers with SpaceX’s Falcon and Dragon Dynamics team in Hawthorne, California: one as a Vehicle Engineering Intern and two as a Vehicle Engineering Associate Engineer.</p>
+        <ul class="space-y-4 border-l border-rule pl-5 text-[0.95rem]">
+          <li><span class="font-mono text-xs text-slate-accent">2022</span><br />I built multibody booster-separation models for Falcon Heavy missions, including USSF-44, to evaluate interface loads and clearance trajectories.</li>
+          <li><span class="font-mono text-xs text-slate-accent">2023</span><br />I performed payload-separation analyses for missions including Ovzon-3, SARah-2, and <button type="button" class="patch-trigger" data-patch="transporter">Transporter-9</button>, and developed Python automation for recurring analysis inputs.</li>
+          <li><span class="font-mono text-xs text-slate-accent">2026</span><br />For Starfall Flight-1, I integrated structural-dynamics and aerothermal analysis in heat-shield deployment work and performed coupled payload and launch-vehicle loads analyses.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-10 grid gap-10 border-t border-rule pt-7 sm:grid-cols-[10rem_1fr]">
+      <p class="font-mono text-xs text-slate-accent">COMMUNITY</p>
+      <p class="leading-7 text-graphite">At MIT, I serve as an AeroAstro Communication Lab Fellow, treasurer for Graduate Women in Aerospace Engineering, Graduate Residential Assistant for Alpha Chi Omega, and one of the organizers of the Graduate Student Ski Trip, among many other adventures.</p>
+    </div>
+
+    <div class="mt-10 grid gap-10 border-t border-rule pt-7 sm:grid-cols-[10rem_1fr]">
+      <p class="font-mono text-xs text-slate-accent">OUTSIDE ACADEMIA</p>
+      <p class="leading-7 text-graphite">Outside of academia, I enjoy baking—particularly for my family and friends—reading, judo, dance, winter sports, and spending time with <button id="miles-trigger" type="button" class="border-b border-red-accent text-inherit hover:text-red-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-red-accent">Miles Davis</button>, my family’s 11-year-old Airedale Terrier.</p>
+    </div>
+  </section>
+
+  <div id="patch-flash" class="patch-flash pointer-events-none fixed inset-0 z-50 grid place-items-center" aria-hidden="true">
+    <img class="patch-image" src={transporterPatch.src} width={transporterPatch.width} height={transporterPatch.height} alt="" />
+  </div>
+
+  <dialog id="miles-game" class="miles-game border border-rule bg-paper p-0 text-ink" aria-labelledby="miles-game-title">
+    <div class="flex items-start justify-between gap-6 border-b border-rule px-5 py-4">
+      <div>
+        <p class="font-mono text-[11px] tracking-[0.12em] text-red-accent">EASTER EGG / 02</p>
+        <h2 id="miles-game-title" class="mt-1 font-display text-2xl tracking-[-0.04em]">Miles Davis: catch the ball.</h2>
+      </div>
+      <button id="miles-close" type="button" class="font-mono text-xs text-slate-accent hover:text-red-accent">CLOSE</button>
+    </div>
+    <div class="p-5">
+      <div class="mb-3 flex items-center justify-between gap-4 font-mono text-xs">
+        <span class="text-graphite">USE ARROW KEYS TO MOVE MILES</span>
+        <span id="miles-score" class="text-red-accent" aria-live="polite">SCORE: 00</span>
+      </div>
+      <canvas id="miles-canvas" class="miles-canvas" width="620" height="260" aria-label="Move Miles up and down to catch the incoming tennis ball."></canvas>
+      <div class="mt-4 flex items-center justify-between gap-4 font-mono text-xs text-slate-accent">
+        <div class="flex gap-2 sm:hidden">
+          <button id="miles-up" type="button" class="border border-rule px-3 py-2">↑ UP</button>
+          <button id="miles-down" type="button" class="border border-rule px-3 py-2">↓ DOWN</button>
+        </div>
+        <button id="miles-restart" type="button" class="ml-auto border-b border-slate-accent pb-1 hover:text-red-accent">RESTART</button>
+      </div>
+    </div>
+  </dialog>
+
+  <script define:vars={{ milesCartoonSrc }}>
+    const trigger = document.querySelector('#miles-trigger');
+    const dialog = document.querySelector('#miles-game');
+    const closeButton = document.querySelector('#miles-close');
+    const restartButton = document.querySelector('#miles-restart');
+    const upButton = document.querySelector('#miles-up');
+    const downButton = document.querySelector('#miles-down');
+    const canvas = document.querySelector('#miles-canvas');
+    const scoreLabel = document.querySelector('#miles-score');
+    const ctx = canvas?.getContext('2d');
+
+    const W = () => canvas?.width ?? 620;
+    const H = () => canvas?.height ?? 260;
+    const DOG_W = 100, DOG_H = 84;
+    const STEP = 22;
+
+    const dogImg = new Image();
+    dogImg.src = milesCartoonSrc;
+
+    // Ball types: [radius, color, points, speed multiplier]
+    const BALL_TYPES = [
+      { r: 13, color: '#a33e36', pts: 1, spd: 1.0 },
+      { r: 10, color: '#284854', pts: 2, spd: 1.4 },
+      { r: 7,  color: '#c49a3a', pts: 3, spd: 1.9 },
+    ];
+
+    let active = false;
+    let frame = 0;
+    let score = 0;
+    let dogX = 30, dogY = 88;
+    let keys = {};
+    let status = '';
+    let statusT = 0;
+    let balls = [];
+    let popups = [];
+
+    const makeBall = (type) => {
+      const t = BALL_TYPES[type];
+      const side = Math.random() > 0.5 ? 1 : -1;
+      const bx = side > 0 ? W() - t.r - 4 : t.r + 4;
+      const by = t.r + 8 + Math.random() * (H() - t.r * 2 - 16);
+      const angle = (Math.random() * 0.6 + 0.2) * Math.PI;
+      const speed = (2.2 + Math.random() * 0.9) * t.spd;
+      return { type, x: bx, y: by, vx: Math.cos(angle) * speed * side * -1, vy: Math.sin(angle) * speed * (Math.random() > 0.5 ? 1 : -1) };
+    };
+
+    const resetBalls = () => {
+      balls = [makeBall(0), makeBall(1), makeBall(2)];
+    };
+
+    const drawDog = () => {
+      if (!ctx) return;
+      if (dogImg.complete && dogImg.naturalWidth > 0) {
+        const offscreen = document.createElement('canvas');
+        offscreen.width = DOG_W; offscreen.height = DOG_H;
+        const oc = offscreen.getContext('2d');
+        oc.drawImage(dogImg, 0, 0, DOG_W, DOG_H);
+        const id = oc.getImageData(0, 0, DOG_W, DOG_H);
+        const d = id.data;
+        for (let i = 0; i < d.length; i += 4) {
+          if (d[i] > 230 && d[i+1] > 230 && d[i+2] > 230) d[i+3] = 0;
+        }
+        oc.putImageData(id, 0, 0);
+        ctx.drawImage(offscreen, dogX, dogY, DOG_W, DOG_H);
+      } else {
+        ctx.fillStyle = '#6c8e98';
+        ctx.beginPath(); ctx.roundRect(dogX, dogY, DOG_W, DOG_H, 10); ctx.fill();
+        ctx.fillStyle = '#faf9f5'; ctx.font = '10px IBM Plex Mono,monospace'; ctx.textAlign = 'center';
+        ctx.fillText('MILES', dogX + DOG_W / 2, dogY + DOG_H / 2 + 4); ctx.textAlign = 'left';
+      }
+    };
+
+    const drawScene = () => {
+      if (!ctx) return;
+      ctx.clearRect(0, 0, W(), H());
+      ctx.fillStyle = '#f5f3ee'; ctx.fillRect(0, 0, W(), H());
+      ctx.strokeStyle = '#e8ebe9'; ctx.lineWidth = 1;
+      for (let y = 40; y < H(); y += 40) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W(), y); ctx.stroke(); }
+      for (let x = 40; x < W(); x += 40) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H()); ctx.stroke(); }
+      drawDog();
+      balls.forEach((b) => {
+        const t = BALL_TYPES[b.type];
+        ctx.fillStyle = t.color;
+        ctx.beginPath(); ctx.arc(b.x, b.y, t.r, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = '#fff'; ctx.font = `bold ${t.r}px IBM Plex Mono,monospace`; ctx.textAlign = 'center';
+        ctx.fillText(String(t.pts), b.x, b.y + t.r * 0.38); ctx.textAlign = 'left';
+      });
+      popups = popups.filter((p) => { p.life -= 1; return p.life > 0; });
+      popups.forEach((p) => {
+        ctx.globalAlpha = p.life / 38;
+        ctx.fillStyle = '#a33e36'; ctx.font = 'bold 13px IBM Plex Mono,monospace'; ctx.textAlign = 'center';
+        ctx.fillText('+' + p.pts, p.x, p.y - (38 - p.life) * 0.7); ctx.textAlign = 'left';
+        ctx.globalAlpha = 1;
+      });
+      if (status && statusT > 0) {
+        ctx.fillStyle = '#5d645f'; ctx.font = '10px IBM Plex Mono,monospace'; ctx.textAlign = 'right';
+        ctx.fillText(status, W() - 10, H() - 10); ctx.textAlign = 'left';
+      }
+    };
+
+    const loop = () => {
+      if (!active) return;
+      if (statusT > 0) statusT--;
+      if (keys['ArrowUp']    || keys['w']) dogY = Math.max(0, dogY - STEP * 0.35);
+      if (keys['ArrowDown']  || keys['s']) dogY = Math.min(H() - DOG_H, dogY + STEP * 0.35);
+      if (keys['ArrowLeft']  || keys['a']) dogX = Math.max(0, dogX - STEP * 0.35);
+      if (keys['ArrowRight'] || keys['d']) dogX = Math.min(W() - DOG_W, dogX + STEP * 0.35);
+      balls.forEach((b, i) => {
+        b.x += b.vx; b.y += b.vy;
+        const t = BALL_TYPES[b.type];
+        if (b.y <= t.r) { b.y = t.r; b.vy = Math.abs(b.vy); }
+        if (b.y >= H() - t.r) { b.y = H() - t.r; b.vy = -Math.abs(b.vy); }
+        if (b.x <= t.r) { b.x = t.r; b.vx = Math.abs(b.vx); }
+        if (b.x >= W() - t.r) { b.x = W() - t.r; b.vx = -Math.abs(b.vx); }
+        const hit = b.x + t.r > dogX + 8 && b.x - t.r < dogX + DOG_W - 8 &&
+                    b.y + t.r > dogY + 8 && b.y - t.r < dogY + DOG_H - 8;
+        if (hit) {
+          score += t.pts;
+          if (scoreLabel) scoreLabel.textContent = `SCORE: ${String(score).padStart(2, '0')}`;
+          popups.push({ x: b.x, y: b.y, pts: t.pts, life: 38 });
+          status = t.pts === 3 ? 'SPECTACULAR.' : t.pts === 2 ? 'NICE.' : 'GOOD.';
+          statusT = 55;
+          balls[i] = makeBall(b.type);
+        }
+      });
+      drawScene();
+      frame = requestAnimationFrame(loop);
+    };
+
+    const start = () => {
+      cancelAnimationFrame(frame);
+      score = 0; dogX = 30; dogY = (H() - DOG_H) / 2; status = ''; statusT = 0; popups = [];
+      if (scoreLabel) scoreLabel.textContent = 'SCORE: 00';
+      resetBalls(); active = true; loop();
+    };
+
+    trigger?.addEventListener('click', () => { dialog?.showModal(); requestAnimationFrame(start); });
+    closeButton?.addEventListener('click', () => dialog?.close());
+    restartButton?.addEventListener('click', start);
+    upButton?.addEventListener('pointerdown', () => { keys['ArrowUp'] = true; });
+    downButton?.addEventListener('pointerdown', () => { keys['ArrowDown'] = true; });
+    document.addEventListener('pointerup', () => { keys['ArrowUp'] = false; keys['ArrowDown'] = false; });
+    dialog?.addEventListener('close', () => { active = false; cancelAnimationFrame(frame); keys = {}; });
+    window.addEventListener('keydown', (e) => {
+      if (!dialog?.open) return;
+      if (['ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].includes(e.key)) e.preventDefault();
+      keys[e.key] = true;
+    });
+    window.addEventListener('keyup', (e) => { keys[e.key] = false; });
+  </script>
+
+  <script>
+    const patchFlash = document.querySelector<HTMLElement>('#patch-flash');
+    let patchTimer = 0;
+    const showPatch = (patch: string) => {
+      if (!patchFlash) return;
+      window.clearTimeout(patchTimer);
+      patchFlash.dataset.patch = patch;
+      patchFlash.classList.remove('is-flashing');
+      void patchFlash.offsetWidth;
+      patchFlash.classList.add('is-flashing');
+      patchTimer = window.setTimeout(() => patchFlash.classList.remove('is-flashing'), 2650);
+    };
+    document.querySelectorAll<HTMLButtonElement>('.patch-trigger').forEach((trigger) => {
+      const patch = trigger.dataset.patch ?? '';
+      trigger.addEventListener('mouseenter', () => showPatch(patch));
+      trigger.addEventListener('focus', () => showPatch(patch));
+      trigger.addEventListener('click', () => showPatch(patch));
+    });
+  </script>
+
+  <style>
+    .patch-trigger { border-bottom: 1px solid #a33e36; color: inherit; }
+    .patch-trigger:hover, .patch-trigger:focus-visible { color: #a33e36; outline: none; }
+    .patch-flash { visibility: hidden; }
+    .patch-flash.is-flashing { visibility: visible; }
+    .patch-image { display: none; width: min(17rem, 56vw); max-height: 52vh; object-fit: contain; filter: drop-shadow(0 12px 16px rgb(40 72 84 / 0.22)); }
+    .patch-flash[data-patch='transporter'] .patch-image { display: block; animation: patch-dissolve 2.6s ease-out forwards; }
+    @keyframes patch-dissolve {
+      0% { opacity: 0; transform: scale(0.82) rotate(-3deg); filter: blur(5px) drop-shadow(0 12px 16px rgb(40 72 84 / 0.22)); }
+      6% { opacity: 1; transform: scale(1) rotate(0deg); filter: blur(0) drop-shadow(0 12px 16px rgb(40 72 84 / 0.22)); }
+      78% { opacity: 1; transform: scale(1.02); filter: blur(0) drop-shadow(0 12px 16px rgb(40 72 84 / 0.22)); }
+      100% { opacity: 0; transform: scale(1.18); filter: blur(9px) drop-shadow(0 12px 16px rgb(40 72 84 / 0)); }
+    }
+    .miles-game { width: min(42rem, calc(100vw - 2rem)); max-width: none; }
+    .miles-game::backdrop { background: rgb(40 72 84 / 0.3); }
+    .miles-canvas { display: block; width: 100%; border: 1px solid #9ba39c; image-rendering: auto; }
+  </style>
+</BaseLayout>

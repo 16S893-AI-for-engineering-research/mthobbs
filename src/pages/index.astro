@@ -1,0 +1,78 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout title="Home">
+  <section class="grid gap-12 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-end">
+    <div>
+      <p class="font-mono text-xs tracking-[0.14em] text-red-accent">MADISON TAYLOR HOBBS</p>
+      <h1 class="mt-5 max-w-xl font-display text-5xl font-medium tracking-[-0.06em] sm:text-6xl">AI-assisted CFD meshing for high-fidelity hypersonic simulations.</h1>
+      <p class="mt-7 max-w-lg text-base leading-7 text-graphite">
+        I am a fourth-year graduate student in the Hypersonics Research Laboratory in MIT’s Department of Aeronautics and Astronautics. Within 16.S893, this project explores AI-assisted CFD mesh generation and mesh qualification: cell skewness, aspect ratio, orthogonality, volume validity, near-wall <code>y+</code>, and grid-convergence analysis for high-fidelity hypersonic simulations.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-x-5 gap-y-3 font-mono text-xs">
+        <a class="border-b border-slate-accent pb-1 text-slate-accent hover:text-red-accent" href="about/">About me</a>
+        <a class="border-b border-slate-accent pb-1 text-slate-accent hover:text-red-accent" href="project/">Current project</a>
+      </div>
+    </div>
+
+    <figure class="border border-rule bg-[#faf9f5] p-4 sm:p-6">
+      <svg viewBox="0 0 640 410" role="img" aria-labelledby="mesh-title mesh-description" class="h-auto w-full">
+        <title id="mesh-title">Illustrative body-fitted mesh around a blunted cone</title>
+        <desc id="mesh-description">A structured two-dimensional mesh with representative grid lines clustered around the surface of a blunted cone.</desc>
+        <rect width="640" height="410" fill="#faf9f5" />
+        <rect x="34" y="42" width="572" height="310" fill="none" stroke="#9ba39c" stroke-width="0.8" />
+
+        <g class="mesh-line" opacity="0.86">
+          <path d="M34 74 C103 72 151 80 186 111 C218 139 255 143 301 136 L510 96 L606 84" />
+          <path d="M34 101 C99 99 144 107 178 133 C212 160 254 166 306 156 L514 116 L606 107" />
+          <path d="M34 128 C96 126 137 134 169 155 C205 179 252 186 310 175 L518 136 L606 130" />
+          <path d="M34 155 C91 153 128 160 158 176 C197 197 250 204 314 193 L522 156 L606 153" />
+          <path d="M34 255 C91 257 128 250 158 234 C197 213 250 206 314 217 L522 254 L606 257" />
+          <path d="M34 282 C96 284 137 276 169 255 C205 231 252 224 310 235 L518 274 L606 280" />
+          <path d="M34 309 C99 311 144 303 178 277 C212 250 254 244 306 254 L514 294 L606 303" />
+          <path d="M34 336 C103 338 151 330 186 299 C218 271 255 267 301 274 L510 314 L606 326" />
+
+          <path d="M78 42 C105 103 127 156 192 184 M78 368 C105 307 127 254 192 226" />
+          <path d="M126 42 C148 101 167 149 210 170 M126 368 C148 309 167 261 210 240" />
+          <path d="M174 42 C193 97 211 143 239 163 M174 368 C193 313 211 267 239 247" />
+          <path d="M222 42 C238 94 252 140 267 158 M222 368 C238 316 252 270 267 252" />
+          <path d="M270 42 C282 91 293 137 295 153 M270 368 C282 319 293 273 295 257" />
+          <path d="M318 42 C326 89 335 134 323 148 M318 368 C326 321 335 276 323 262" />
+          <path d="M366 42 C370 87 376 130 351 143 M366 368 C370 323 376 280 351 267" />
+          <path d="M414 42 C414 85 417 127 379 138 M414 368 C414 325 417 283 379 272" />
+          <path d="M462 42 C458 84 458 124 407 133 M462 368 C458 326 458 286 407 277" />
+          <path d="M510 42 C502 82 499 121 435 128 M510 368 C502 328 499 289 435 282" />
+          <path d="M558 42 C547 80 540 118 463 123 M558 368 C547 330 540 292 463 287" />
+        </g>
+
+        <g fill="none" stroke="#6c8e98" stroke-width="0.8">
+          <path d="M185 176 C204 151 225 143 250 139 L486 96" />
+          <path d="M189 183 C208 161 227 153 252 149 L487 104" />
+          <path d="M192 188 C210 169 229 162 253 158 L488 112" />
+          <path d="M194 192 C211 174 230 167 254 163 L489 117" />
+          <path d="M195 195 C212 178 231 171 255 167 L489 121" />
+          <path d="M195 198 C213 181 232 174 256 170 L490 124" />
+          <path d="M195 212 C213 229 232 236 256 240 L490 286" />
+          <path d="M195 215 C212 232 231 239 255 243 L489 289" />
+          <path d="M194 218 C211 236 230 243 254 247 L489 293" />
+          <path d="M192 222 C210 241 229 248 253 252 L488 298" />
+          <path d="M189 227 C208 249 227 257 252 261 L487 306" />
+          <path d="M185 234 C204 259 225 267 250 271 L486 314" />
+        </g>
+
+        <path d="M195 205 C197 188 211 172 235 162 L490 114 L490 296 L235 248 C211 238 197 222 195 205 Z" fill="#f5f3ee" stroke="#284854" stroke-width="1.4" />
+        <path d="M195 205 C197 188 211 172 235 162 L490 114 M195 205 C197 222 211 238 235 248 L490 296" fill="none" stroke="#a33e36" stroke-width="1.1" />
+        <line x1="195" y1="205" x2="490" y2="205" stroke="#c7cec8" stroke-width="0.7" stroke-dasharray="4 4" />
+        <line x1="56" y1="205" x2="116" y2="205" stroke="#284854" stroke-width="1" />
+        <path d="M116 205 l-8 -4 v8 z" fill="#284854" />
+
+        <text x="48" y="63" fill="#5d645f" font-family="IBM Plex Mono, monospace" font-size="11">FREESTREAM</text>
+        <text x="426" y="94" fill="#a33e36" font-family="IBM Plex Mono, monospace" font-size="10">WALL</text>
+        <text x="48" y="385" fill="#5d645f" font-family="IBM Plex Mono, monospace" font-size="11">BLUNTED-CONE MESH</text>
+      </svg>
+      <figcaption class="mt-4 border-t border-rule pt-3 font-mono text-[11px] leading-5 text-graphite">
+        A structured body-fitted CFD mesh with wall-normal cell clustering to resolve steep gradients in the near-wall flow field.
+      </figcaption>
+    </figure>
+  </section>
+</BaseLayout>
