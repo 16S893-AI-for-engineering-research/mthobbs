@@ -1,0 +1,4 @@
+exclude:
+  - "src/pages/index.astro"
+  - "src/pages/dev-log/index.astro"
+  - "src/layouts/BaseLayout.astro"
