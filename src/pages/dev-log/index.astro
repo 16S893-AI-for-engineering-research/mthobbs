@@ -17,6 +17,22 @@ const entries = [
     title: 'Compared models for animation generation.',
     text: 'While building the portfolio Easter eggs, I experimented with both GPT-5.6 Terra and Claude Sonnet 4.6 for generating canvas animations. Claude produced noticeably cleaner results. This further interests me in understanding the optimal use cases of different models, particularly for visual and animation generation.',
   },
+   {
+       day: 'WEEK 2: 09/22/22026',
+       title: 'Created a notation-consistency skill.',
+       text: "This week I went back and forth on where to start: an engineering-reasoning skill, a technical-writing skill, or some kind of
+ plotting-assistance skill. I ended up going with technical writing, mostly because I wanted to get a feel for how skills are actually structured and put
+ together before taking on something more complicated. One problem I run into all the time, especially in longer fluid and solid mechanics documents, is
+ keeping my notation consistent across a whole paper or thesis. So I built an equation and notation consistency checker, something that flags places where
+ I've used different subscripts, symbols, or conventions for the same quantity. I started by explaining the problem to GPT-5.6 Luna and giving it a real
+ example from my thesis that I'd fixed a few months ago, where I had used two different subscripts for vibrational temperature. From there I let it build out
+ the rest of the skill and asked it to come up with a few more representative examples. I used those to tighten the instructions and cut down on false
+ positives, especially cases where a notation difference was an intentional choice by the author and not actually a mistake. The biggest takeaway for me was
+ that starting with a narrow, well-defined task made it much easier to figure out how to describe what a skill should do and where its limits should be.
+ Unrelated, but I also spent a frustrating chunk of time this week dealing with Pi repeatedly telling me it didn't have access to certain directories or
+ permission to write files. I still haven't figured out how to fix it globally. It kept happening after I quit Pi, restarted it in a new terminal, and
+ updated it. From what I can tell, the write-permission problem isn't coming from Nono either, so that's something I'll need to dig into more.",
+     },
 ];
 ---
 <BaseLayout title="Dev log" description="Development notes for Madison Taylor Hobbs's AI research portfolio.">
