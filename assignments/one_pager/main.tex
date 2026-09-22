@@ -1,14 +1,69 @@
-\documentclass{article}
-\usepackage{graphicx} % Required for inserting images
+\documentclass[11pt]{article}
+\frenchspacing
+\usepackage[colorlinks=false,pdfborder={0 0 1}]{hyperref}
+\usepackage[
+    top=0.65in,
+    bottom=0.65in,
+    left=0.7in,
+    right=0.7in
+]{geometry}
 
-\title{16.S893 Project Statement}
-\author{mthobbs }
-\date{September 22 2026}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.35em}
 
 \begin{document}
 
-\maketitle
+\noindent
+{\small Madison T. Hobbs}
+\hfill
+{\small 22 September 2026}
 
-\section{Introduction}
+\vspace{0.25em}
 
+\begin{center}
+    {\normalsize \textbf{16.S893 Proposal: AI-Assisted CFD Meshing and Verification for Hypersonic Simulations}}
+\end{center}
+
+\vspace{0.35em}
+High-fidelity computational fluid dynamics (CFD) requires sufficient spatial resolution to capture the dominant flow gradients at a manageable cost. 
+In hypersonic flow, those gradients are concentrated across shocks, boundary layers, surface-heating regions, and the wake. 
+Mesh design depends on surface spacing, wall-normal resolution, boundary-layer growth, local shock and wake refinement, cell quality, and transitions in cell size. 
+A mesh can satisfy geometric quality metrics while remaining too coarse to resolve the gradients that control pressure, heat flux, and wake structure. 
+Uniform three-dimensional refinement rapidly increases cell count, memory demand, and node-hours. 
+Efficient hypersonic meshing requires targeted resolution based on the local flow physics.
+
+Mesh generation and verification are iterative and time-intensive. 
+The usual workflow cycles through mesh construction, quality checks, solver execution, flowfield inspection, and targeted refinement. 
+The resulting solution must also demonstrate grid convergence, with quantities of interest approaching stable values under systematic refinement. 
+This is especially important in coupled fluid-material analyses, where CFD supplies the pressure and aerothermal loads that drive material response. 
+Errors from inadequate fluid resolution propagate directly into the coupled prediction. 
+Establishing a mesh-independent fluid solution can consume substantial time and compute before the primary multiphysics problem is addressed.
+
+This project will assess whether an AI agent-assisted meshing workflow can reduce that burden while preserving standard CFD verification. 
+Foundation models available through Parley will provide the reasoning layer. 
+The test case will be the RAM-C II, a canonical flight-test benchmark for hypersonic blunt-body aerothermodynamics and wake-flow prediction \cite{Jones1972ElectrostaticProbePlasmaParameters}. 
+The RAM-C II is well-suited to this study because its geometry, flight conditions, reference data, and existing numerical simulations are widely available and unrestricted. 
+The demonstration will use the clean RAM-C II fluid problem to isolate the meshing task, with Pointwise through Glyph for grid generation and US3D, the University of Minnesota Computational Hypersonics Laboratory code for compressible and reacting-flow simulations, for the flow solution \cite{Candler2015US3DDevelopment}.
+Pointwise Glyph scripts, agent instructions, verification tools, mesh-generation procedures, and US3D solutions will be shared in the class repository. The US3D source code will not be distributed.
+
+The agent will begin with the RAM-C II geometry, freestream state, and solver setup, including the selected flow model, wall boundary condition, and angle of attack. 
+The target quantities of interest will be surface pressure and heat flux, with computational constraints set by allowable cell count and solver cost. 
+Reusable engineering skills will evaluate expected shock geometry, first-cell height for a target \(y^+\), wall-normal growth, surface-curvature resolution, cell-volume validity, skewness, orthogonality, aspect ratio, and local size transitions. 
+Each skill will use deterministic calculations or literature-based criteria drawn from established hypersonic CFD and numerical methods.
+
+Using these constraints, the agent will generate and modify the mesh by adjusting connector point counts, first-cell spacing, growth rates, and local shock, boundary-layer, and wake refinement. 
+Topology changes will pause the workflow for human inspection in Pointwise and a dedicated topology review before modification. 
+After each US3D solve, the agent will assess residual behavior, surface pressure, heat flux, and selected flowfield slices, then link observed deficiencies to specific mesh changes. 
+It will record the affected region, parameter changed, and resulting solution response. 
+The agent will then generate a topologically consistent coarse, medium, and fine grid family. 
+Grid convergence in pressure and heat flux will be evaluated using solution differences, Richardson extrapolation, and Grid Convergence Index (GCI) \cite{Roache1994GridRefinement}.
+
+The AI-assisted workflow will be compared with the conventional manual workflow using final solution quality, number of mesh iterations, failed solver runs, expert interventions, and total computational cost. 
+Two failures of the AI-assisted workflow will be investigated. 
+The first is a mesh that passes geometric quality checks but remains underresolved, with pressure, heat flux, or shock location still changing under refinement. 
+The second is a mesh that is geometrically valid in Pointwise but produces unstable, poorly converged, or in the most extreme case, failed US3D runs. 
+
+\newpage
+\bibliographystyle{unsrt}
+\bibliography{one_pager}
 \end{document}
