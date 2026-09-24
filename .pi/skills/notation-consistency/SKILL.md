@@ -1,9 +1,8 @@
-```markdown
-   ---
-   name: notation-consistency
-   description: Guidelines for checking the consistency, clarity, and definition of equations, symbols, notation, units, and acronyms in technical and
- scientific writing. Use when the user requests a notation review or provides technical text containing equations or mathematical symbols.
-   ---
+---
+name: notation-consistency
+description: >-
+  Guidelines for checking the consistency, clarity, and definition of equations, symbols, notation, units, and acronyms in technical and scientific writing. Use when the user requests a notation review or provides technical text containing equations or mathematical symbols.
+---
 
    # Equation and Notation Consistency Checker
 
@@ -69,4 +68,3 @@
    - Do not change notation merely because another convention may be more common.
    - If the surrounding context is insufficient to determine whether a symbol is intentional, identify it as potentially ambiguous rather than definitively
  incorrect.
- ```
