@@ -1,0 +1,24 @@
+<figure class="blunt-cone-mesh" aria-labelledby="mesh-title mesh-description">
+  <svg viewBox="0 0 720 430" role="img">
+    <title id="mesh-title">Illustrative computational mesh around a blunt cone</title>
+    <desc id="mesh-description">A body-fitted structured mesh in a rectangular far-field domain, with cells clustered near a blunt conical body and a dashed bow shock ahead of its nose.</desc>
+    <rect width="720" height="430" fill="#faf9f5"/><rect x="36" y="38" width="648" height="340" fill="none" stroke="#cfd2ca"/>
+    <g class="far-mesh" fill="none">
+      <path d="M36 73 C140 70 214 77 286 120 C340 152 423 148 507 108 L684 77"/><path d="M36 108 C136 105 207 113 276 148 C334 179 421 176 519 134 L684 112"/><path d="M36 143 C129 141 198 147 267 175 C329 203 420 205 532 162 L684 147"/><path d="M36 178 C119 177 186 181 255 201 C322 224 419 231 544 191 L684 181"/><path d="M36 252 C119 253 186 249 255 229 C322 206 419 199 544 239 L684 249"/><path d="M36 287 C129 289 198 283 267 255 C329 227 420 225 532 268 L684 283"/><path d="M36 322 C136 325 207 317 276 282 C334 251 421 254 519 296 L684 318"/>
+      <path d="M88 38 C122 107 158 164 250 197M88 378 C122 309 158 252 250 219"/><path d="M142 38 C169 105 197 157 266 182M142 378 C169 311 197 259 266 234"/><path d="M196 38 C216 102 240 151 283 167M196 378 C216 314 240 265 283 249"/><path d="M250 38 C264 100 281 147 299 155M250 378 C264 316 281 269 299 261"/><path d="M304 38 C312 98 324 145 315 150M304 378 C312 318 324 271 315 266"/><path d="M358 38 C359 96 365 142 337 148M358 378 C359 320 365 274 337 268"/><path d="M412 38 C405 94 406 140 360 145M412 378 C405 322 406 276 360 271"/><path d="M466 38 C452 92 448 138 384 142M466 378 C452 324 448 278 384 274"/><path d="M520 38 C499 91 492 136 409 139M520 378 C499 325 492 280 409 277"/><path d="M574 38 C546 89 537 134 435 137M574 378 C546 327 537 282 435 279"/>
+    </g>
+    <g class="near-wall" fill="none">
+      <path d="M246 205 C252 180 278 160 315 150 L546 101"/><path d="M247 207 C254 184 279 165 316 155 L547 106"/><path d="M248 209 C255 188 280 170 317 160 L548 111"/><path d="M249 211 C256 192 281 175 318 165 L549 116"/><path d="M250 213 C257 196 282 180 319 170 L550 121"/><path d="M251 215 C258 200 283 185 320 175 L551 126"/><path d="M252 217 C259 204 284 190 321 180 L552 131"/><path d="M252 219 C259 208 285 195 322 185 L553 136"/>
+      <path d="M252 221 C259 226 285 235 322 245 L553 294"/><path d="M252 223 C259 230 284 240 321 250 L552 299"/><path d="M251 225 C258 234 283 245 320 255 L551 304"/><path d="M250 227 C257 238 282 250 319 260 L550 309"/><path d="M249 229 C256 242 281 255 318 265 L549 314"/><path d="M248 231 C255 246 280 260 317 270 L548 319"/><path d="M247 233 C254 250 279 265 316 275 L547 324"/><path d="M246 235 C252 254 278 270 315 280 L546 329"/>
+    </g>
+    <path class="shock" d="M183 78 C151 121 143 169 143 214 C143 259 151 307 183 350"/>
+    <path class="body" d="M244 218 C247 187 274 164 312 153 L548 103 L548 327 L312 277 C274 266 247 249 244 218Z"/>
+    <path class="wall" d="M244 218 C247 187 274 164 312 153 L548 103M244 218 C247 249 274 266 312 277 L548 327"/>
+    <line x1="56" y1="218" x2="124" y2="218" class="arrow"/><path d="M124 218l-8-4v8z" fill="#202522"/>
+    <text x="48" y="61">FREESTREAM</text><text x="96" y="80" class="red">BOW SHOCK</text><text x="475" y="94" class="red">WALL</text><text x="566" y="348">WAKE</text><text x="48" y="402">ILLUSTRATIVE BLUNT-CONE COMPUTATIONAL MESH</text>
+  </svg>
+  <figcaption>Structured body-fitted cells tighten at the wall and follow the bow-shock and wake regions that drive local refinement.</figcaption>
+</figure>
+<style>
+.blunt-cone-mesh{margin:0;border:1px solid #cfd2ca;background:#faf9f5;padding:1rem}.blunt-cone-mesh svg{display:block;width:100%;height:auto}.far-mesh{stroke:#5d645f;stroke-width:.7}.near-wall{stroke:#202522;stroke-width:.48}.body{fill:#f5f3ee;stroke:#202522;stroke-width:1.5}.wall{fill:none;stroke:#a33e36;stroke-width:1.25}.shock{fill:none;stroke:#a33e36;stroke-width:1.15;stroke-dasharray:5 5}.arrow{stroke:#202522;stroke-width:1}.blunt-cone-mesh text{fill:#5d645f;font:500 10px 'IBM Plex Mono',monospace;letter-spacing:.04em}.blunt-cone-mesh text.red{fill:#a33e36}.blunt-cone-mesh figcaption{margin-top:.8rem;border-top:1px solid #e2e5e1;padding-top:.75rem;color:#5d645f;font:500 .68rem/1.5 'IBM Plex Mono',monospace}
+</style>

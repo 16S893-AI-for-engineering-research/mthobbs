@@ -104,7 +104,7 @@ const milesCartoonSrc = milesCartoon.src;
     // Ball types: [radius, color, points, speed multiplier]
     const BALL_TYPES = [
       { r: 13, color: '#a33e36', pts: 1, spd: 1.0 },
-      { r: 10, color: '#284854', pts: 2, spd: 1.4 },
+      { r: 10, color: '#202522', pts: 2, spd: 1.4 },
       { r: 7,  color: '#c49a3a', pts: 3, spd: 1.9 },
     ];
 
@@ -147,7 +147,7 @@ const milesCartoonSrc = milesCartoon.src;
         oc.putImageData(id, 0, 0);
         ctx.drawImage(offscreen, dogX, dogY, DOG_W, DOG_H);
       } else {
-        ctx.fillStyle = '#6c8e98';
+        ctx.fillStyle = '#5d645f';
         ctx.beginPath(); ctx.roundRect(dogX, dogY, DOG_W, DOG_H, 10); ctx.fill();
         ctx.fillStyle = '#faf9f5'; ctx.font = '10px IBM Plex Mono,monospace'; ctx.textAlign = 'center';
         ctx.fillText('MILES', dogX + DOG_W / 2, dogY + DOG_H / 2 + 4); ctx.textAlign = 'left';

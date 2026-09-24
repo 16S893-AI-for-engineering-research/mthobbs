@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import BluntConeMesh from '../components/BluntConeMesh.astro';
 ---
 <BaseLayout title="Home">
   <section class="grid gap-12 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-end">
@@ -15,7 +16,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       </div>
     </div>
 
-    <figure class="border border-rule bg-[#faf9f5] p-4 sm:p-6">
+    <BluntConeMesh />
+    <figure class="old-home-mesh border border-rule bg-[#faf9f5] p-4 sm:p-6" aria-hidden="true">
       <svg viewBox="0 0 640 410" role="img" aria-labelledby="mesh-title mesh-description" class="h-auto w-full">
         <title id="mesh-title">Illustrative body-fitted mesh around a blunted cone</title>
         <desc id="mesh-description">A structured two-dimensional mesh with representative grid lines clustered around the surface of a blunted cone.</desc>
@@ -45,7 +47,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           <path d="M558 42 C547 80 540 118 463 123 M558 368 C547 330 540 292 463 287" />
         </g>
 
-        <g fill="none" stroke="#6c8e98" stroke-width="0.8">
+        <g fill="none" stroke="#5d645f" stroke-width="0.8">
           <path d="M185 176 C204 151 225 143 250 139 L486 96" />
           <path d="M189 183 C208 161 227 153 252 149 L487 104" />
           <path d="M192 188 C210 169 229 162 253 158 L488 112" />
@@ -60,11 +62,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           <path d="M185 234 C204 259 225 267 250 271 L486 314" />
         </g>
 
-        <path d="M195 205 C197 188 211 172 235 162 L490 114 L490 296 L235 248 C211 238 197 222 195 205 Z" fill="#f5f3ee" stroke="#284854" stroke-width="1.4" />
+        <path d="M195 205 C197 188 211 172 235 162 L490 114 L490 296 L235 248 C211 238 197 222 195 205 Z" fill="#f5f3ee" stroke="#202522" stroke-width="1.4" />
         <path d="M195 205 C197 188 211 172 235 162 L490 114 M195 205 C197 222 211 238 235 248 L490 296" fill="none" stroke="#a33e36" stroke-width="1.1" />
         <line x1="195" y1="205" x2="490" y2="205" stroke="#c7cec8" stroke-width="0.7" stroke-dasharray="4 4" />
-        <line x1="56" y1="205" x2="116" y2="205" stroke="#284854" stroke-width="1" />
-        <path d="M116 205 l-8 -4 v8 z" fill="#284854" />
+        <line x1="56" y1="205" x2="116" y2="205" stroke="#202522" stroke-width="1" />
+        <path d="M116 205 l-8 -4 v8 z" fill="#202522" />
 
         <text x="48" y="63" fill="#5d645f" font-family="IBM Plex Mono, monospace" font-size="11">FREESTREAM</text>
         <text x="426" y="94" fill="#a33e36" font-family="IBM Plex Mono, monospace" font-size="10">WALL</text>
@@ -75,4 +77,5 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       </figcaption>
     </figure>
   </section>
+  <style>.old-home-mesh { display:none; }</style>
 </BaseLayout>

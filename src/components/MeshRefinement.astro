@@ -1,0 +1,57 @@
+---
+type Point = { x: number; y: number };
+
+function makeMesh(x: number, y: number, width: number, height: number, cols: number, rows: number, seed: number) {
+  let state = seed;
+  const random = () => {
+    state = (state * 1664525 + 1013904223) % 4294967296;
+    return state / 4294967296;
+  };
+  const points: Point[][] = [];
+  for (let row = 0; row <= rows; row++) {
+    points[row] = [];
+    for (let col = 0; col <= cols; col++) {
+      const edge = row === 0 || row === rows || col === 0 || col === cols;
+      const jitterX = edge ? 0 : (random() - 0.5) * (width / cols) * 0.55;
+      const jitterY = edge ? 0 : (random() - 0.5) * (height / rows) * 0.55;
+      points[row][col] = { x: x + col * width / cols + jitterX, y: y + row * height / rows + jitterY };
+    }
+  }
+  const lines: [Point, Point][] = [];
+  for (let row = 0; row <= rows; row++) for (let col = 0; col < cols; col++) lines.push([points[row][col], points[row][col + 1]]);
+  for (let row = 0; row < rows; row++) for (let col = 0; col <= cols; col++) lines.push([points[row][col], points[row + 1][col]]);
+  for (let row = 0; row < rows; row++) for (let col = 0; col < cols; col++) {
+    lines.push((row + col) % 2 === 0 ? [points[row][col], points[row + 1][col + 1]] : [points[row][col + 1], points[row + 1][col]]);
+  }
+  return lines;
+}
+
+const levels = [
+  { label: 'COARSE', detail: 'LARGER ELEMENTS', y: 20, cols: 18, rows: 3, seed: 11 },
+  { label: 'MEDIUM', detail: 'SYSTEMATIC REFINEMENT', y: 132, cols: 28, rows: 5, seed: 23 },
+  { label: 'FINE', detail: 'SMALLER ELEMENTS', y: 244, cols: 42, rows: 7, seed: 47 },
+].map((level) => ({ ...level, lines: makeMesh(176, level.y, 720, 78, level.cols, level.rows, level.seed) }));
+---
+<figure class="refinement" aria-labelledby="refinement-title refinement-desc">
+  <svg viewBox="0 0 920 350" role="img">
+    <title id="refinement-title">Coarse, medium, and fine unstructured triangular mesh refinement</title>
+    <desc id="refinement-desc">Three rectangular domains show progressively denser irregular triangular meshes.</desc>
+    <rect width="920" height="350" fill="#faf9f5"/>
+    {levels.map((level) => (
+      <g class="row">
+        <text x="16" y={level.y + 27}>{level.label}</text>
+        <text x="16" y={level.y + 46} class="detail">{level.detail}</text>
+        <rect x="176" y={level.y} width="720" height="78" fill="#f7f5f0" />
+        <g class="mesh-lines">
+          {level.lines.map(([start, end]) => <line x1={start.x} y1={start.y} x2={end.x} y2={end.y} />)}
+        </g>
+        <rect x="176" y={level.y} width="720" height="78" fill="none" />
+      </g>
+    ))}
+  </svg>
+  <figcaption>Illustrative unstructured triangular mesh density. A verification study refines a consistent mesh family rather than comparing unrelated grids.</figcaption>
+</figure>
+
+<style>
+  .refinement { margin:3rem 0 0; border:1px solid #cfd2ca; background:#faf9f5; padding:1rem; } svg { display:block; width:100%; height:auto; } .row > rect:last-child { stroke:#202522; stroke-width:.85; } .mesh-lines { stroke:#202522; stroke-opacity:.72; stroke-width:.62; } text { fill:#a33e36; font:600 11px 'IBM Plex Mono',monospace; letter-spacing:.11em; }.detail { fill:#5d645f; font-size:8px; letter-spacing:.04em; } figcaption { margin-top:.8rem; border-top:1px solid #e2e5e1; padding-top:.75rem; color:#5d645f; font:500 .68rem/1.5 'IBM Plex Mono',monospace; }
+</style>

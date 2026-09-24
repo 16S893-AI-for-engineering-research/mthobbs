@@ -1,16 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap');
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
 @theme {
-  --font-display: "Space Grotesk", sans-serif;
+  --font-display: "Cormorant Garamond", Georgia, serif;
   --font-sans: "Inter", sans-serif;
   --font-mono: "IBM Plex Mono", monospace;
   --color-paper: #f5f3ee;
   --color-ink: #202522;
   --color-graphite: #5d645f;
   --color-rule: #cfd2ca;
-  --color-slate-accent: #284854;
+  --color-slate-accent: #202522;
   --color-red-accent: #a33e36;
 }
 
@@ -27,8 +27,10 @@ html { scroll-behavior: smooth; }
 
 body { min-width: 320px; }
 
+.font-display { font-weight: 400 !important; }
+
 ::selection {
-  background: #cddbe0;
+  background: #ead7d2;
   color: var(--color-ink);
 }
 
@@ -42,11 +44,11 @@ body { min-width: 320px; }
 
 .mesh-line {
   fill: none;
-  stroke: #6c8e98;
+  stroke: #5d645f;
   stroke-width: 0.75;
   vector-effect: non-scaling-stroke;
 }
 
 .mesh-line--accent { stroke: #a33e36; }
 
-.mesh-point { fill: #284854; }
+.mesh-point { fill: #202522; }
