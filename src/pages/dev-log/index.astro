@@ -4,35 +4,44 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 const entries = [
   {
     day: 'WEEK 1: 09/14/2026',
-    title: 'Defined the project direction.',
-    text: 'I outlined an AI-assisted Pointwise Glyph workflow for mesh creation, refinement, and grid-convergence comparisons. I identified mesh qualification, near-wall y+, and solution changes across successively refined grids as the central technical focus.',
+    title: 'Picking a direction.',
+    text: [
+      `I started out feeling stuck because the assignment was simply to build a website. I had a lot of freedom, but I did not know where to start or which choice to make first.`,
+      `Having AI make a first pass gave me something concrete to react to. That helped me choose a project about using AI to help with Pointwise Glyph meshing, mesh checks, and grid-convergence studies. I am still figuring out how much I should decide on my own before I ask a model to help me explore ideas.`,
+    ],
   },
   {
     day: 'WEEK 1: 09/15/2026',
-    title: 'Built the portfolio foundation.',
-    text: 'I reviewed classmate Hugh Cairney’s Astro and Tailwind setup, then created a light four-page site with a shared layout. I found the site creation incredibly quick once I narrowed down my stylistic preferences: compact labels, thin rules, square panels, and graph-paper-inspired log cards.',
+    title: 'Building the site.',
+    text: [
+      `I looked at classmate Hugh Cairney’s Astro and Tailwind setup, then built a simple four-page site with a shared layout. Once I knew I liked compact labels, thin rules, square panels, and graph-paper-inspired log cards, the site came together much more quickly.`,
+      `At first, website generation was frustrating. Even the highest-level models from each company would run ahead and add pages, features, or styling that I had not asked for. Now I ask for a plan first and say that I need to approve it before any design or code changes. That helps keep the site simple and closer to what I actually want.`,
+    ],
   },
   {
     day: 'WEEK 1: 09/15/2026',
-    title: 'Compared models for animation generation.',
-    text: 'While building the portfolio Easter eggs, I experimented with both GPT-5.6 Terra and Claude Sonnet 4.6 for generating canvas animations. Claude produced noticeably cleaner results. This further interests me in understanding the optimal use cases of different models, particularly for visual and animation generation.',
+    title: 'Trying models for animation.',
+    text: [
+      `While building the small interactive parts of the site, I tried GPT-5.6 Terra and Claude Sonnet 4.6 for canvas animations. The Claude version looked cleaner and took less work to fit into the site.`,
+      `That made me think more about which jobs each model is good at. I do not want to assume that the most advanced version of a model will be best for every task. I want to keep comparing them, especially for visual work where something can look good at first but still need a lot of fixing.`,
+    ],
   },
-   {
-       day: 'WEEK 2: 09/22/22026',
-       title: 'Created a notation-consistency skill.',
-       text: "This week I went back and forth on where to start: an engineering-reasoning skill, a technical-writing skill, or some kind of
- plotting-assistance skill. I ended up going with technical writing, mostly because I wanted to get a feel for how skills are actually structured and put
- together before taking on something more complicated. One problem I run into all the time, especially in longer fluid and solid mechanics documents, is
- keeping my notation consistent across a whole paper or thesis. So I built an equation and notation consistency checker, something that flags places where
- I've used different subscripts, symbols, or conventions for the same quantity. I started by explaining the problem to GPT-5.6 Luna and giving it a real
- example from my thesis that I'd fixed a few months ago, where I had used two different subscripts for vibrational temperature. From there I let it build out
- the rest of the skill and asked it to come up with a few more representative examples. I used those to tighten the instructions and cut down on false
- positives, especially cases where a notation difference was an intentional choice by the author and not actually a mistake. The biggest takeaway for me was
- that starting with a narrow, well-defined task made it much easier to figure out how to describe what a skill should do and where its limits should be.
- Unrelated, but I also spent a frustrating chunk of time this week dealing with Pi repeatedly telling me it didn't have access to certain directories or
- permission to write files. I still haven't figured out how to fix it globally. It kept happening after I quit Pi, restarted it in a new terminal, and
- updated it. From what I can tell, the write-permission problem isn't coming from Nono either, so that's something I'll need to dig into more.",
-     },
+  {
+    day: 'WEEK 2: 09/22/2026',
+    title: 'Making a notation-consistency skill.',
+    text: [
+      `This week I considered making a skill for engineering reasoning, technical writing, or plotting. I chose technical writing because I wanted to learn how skills are put together before trying something more complicated. I made an equation and notation consistency checker for a problem I have in longer fluid- and solid-mechanics documents: using different subscripts, symbols, or conventions for the same quantity. I started with a real thesis example about vibrational-temperature subscripts, then used other examples to improve the instructions and cut down on false alarms.`,
+      `The biggest lesson was that it is much easier to make a skill when the job is narrow and clear. I also spent time trying to fix Pi directory and write-permission problems that continued after restarting and updating it. I have not fixed that yet, but it has made me pay more attention to the setup around an agent, not just the prompts I give it.`,
+    ],
+  },
+  {
+    day: 'WEEK 2: 09/24/2026',
+    title: 'Trying class skills and refining the project.',
+    text: [
+      `I looked through the class skills and liked that grill-me and fight-me work at different levels. I can see them being useful at different points in the research process. I copied both into my skills folder and tried adding a short section at the bottom to prime them to be even harsher about CFD and numerical-method claims. I want them to push me to be precise about what I mean and how I will support it. They gave me a few comments that were a little harsh, but needed, about my scope being broad. I will keep that in mind as I move forward and see how the exact metric for reduced meshing time takes shape.`, 
+      `After meeting with my advisor, Professor Harris, last Monday, I finalized the agent-assisted meshing procedure in my one-pager. I also refined the website so it reflects that same procedure and better shows what I am planning to do.`,
+    ],
+  },
 ];
 ---
 <BaseLayout title="Dev log" description="Development notes for Madison Taylor Hobbs's AI research portfolio.">
@@ -46,7 +55,9 @@ const entries = [
         <article class="paper-grid border border-rule p-5 sm:p-7">
           <p class="font-mono text-xs tracking-[0.12em] text-red-accent">{entry.day}</p>
           <h2 class="mt-6 font-display text-2xl font-medium tracking-[-0.04em]">{entry.title}</h2>
-          <p class="mt-4 max-w-2xl leading-7 text-graphite">{entry.text}</p>
+          <div class="mt-4 max-w-2xl space-y-4 leading-7 text-graphite">
+            {entry.text.map((paragraph) => <p>{paragraph}</p>)}
+          </div>
         </article>
       ))}
     </div>
