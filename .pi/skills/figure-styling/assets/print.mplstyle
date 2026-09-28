@@ -1,0 +1,44 @@
+# Papers and theses: 7-9 pt text, thin lines, no grid.
+
+font.size: 8
+font.family: sans-serif
+font.sans-serif: Arial, Helvetica, DejaVu Sans
+
+axes.linewidth: 0.6
+axes.titlesize: 9
+axes.titlepad: 4
+axes.labelsize: 8
+axes.spines.top: False
+axes.spines.right: False
+
+xtick.labelsize: 7
+ytick.labelsize: 7
+xtick.major.width: 0.6
+ytick.major.width: 0.6
+xtick.major.size: 3
+ytick.major.size: 3
+xtick.direction: in
+ytick.direction: in
+
+axes.grid: False
+
+lines.linewidth: 1.0
+lines.markersize: 3.5
+
+legend.fontsize: 7
+legend.framealpha: 0.8
+legend.shadow: False
+legend.title_fontsize: 8
+legend.frameon: True
+legend.edgecolor: 0.7
+legend.handlelength: 1.5
+
+figure.facecolor: white
+figure.edgecolor: white
+
+# Embed TrueType fonts in vector exports.
+pdf.fonttype: 42
+ps.fonttype: 42
+
+# Okabe-Ito colourblind-safe cycle
+axes.prop_cycle: cycler('color', ['0072B2', 'D55E00', '009E73', 'CC79A7', '56B4E9', 'E69F00', 'F0E442', '000000'])

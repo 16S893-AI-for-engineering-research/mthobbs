@@ -1,0 +1,38 @@
+# Slides and posters: larger text, thicker lines, light grid.
+
+font.size: 18
+font.family: sans-serif
+font.sans-serif: Arial, Helvetica, DejaVu Sans
+
+axes.linewidth: 0.8
+axes.titlesize: 20
+axes.titlepad: 8
+axes.labelsize: 18
+axes.spines.top: False
+axes.spines.right: False
+
+xtick.labelsize: 14
+ytick.labelsize: 14
+
+axes.grid: True
+grid.linestyle: --
+grid.linewidth: 0.5
+grid.alpha: 0.5
+
+lines.linewidth: 2
+lines.markersize: 5
+
+legend.fontsize: 14
+legend.framealpha: 0.7
+legend.shadow: False
+legend.title_fontsize: 16
+
+figure.facecolor: white
+figure.edgecolor: white
+
+# Embed TrueType fonts in vector exports.
+pdf.fonttype: 42
+ps.fonttype: 42
+
+# Okabe-Ito colourblind-safe cycle
+axes.prop_cycle: cycler('color', ['0072B2', 'D55E00', '009E73', 'CC79A7', '56B4E9', 'E69F00', 'F0E442', '000000'])
