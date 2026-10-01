@@ -1,0 +1,196 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const base = import.meta.env.BASE_URL;
+const proposalUrl = `${base}documents/hobbs-cfd-meshing-proposal.pdf`;
+const figure6Url = `${base}assignments/figure_recreation/figure6_overlay.png`;
+const figure7Url = `${base}assignments/figure_recreation/figure7_overlay.png`;
+
+const repoBase = 'https://github.com/16S893-AI-for-engineering-research/mthobbs';
+const onePagerRepoUrl = `${repoBase}/tree/main/assignments/one_pager`;
+const onePagerPdfRepoUrl = `${repoBase}/blob/main/assignments/one_pager/main.pdf`;
+const figRecRepoUrl = `${repoBase}/tree/main/assignments/figure_recreation`;
+const figRecPaperDirUrl = `${repoBase}/tree/main/assignments/figure_recreation/paper`;
+const figRecPlotsUrl = `${repoBase}/tree/main/assignments/figure_recreation/plots`;
+const figRecWriteupUrl = `${repoBase}/tree/main/assignments/figure_recreation/writeup`;
+---
+<BaseLayout title="Assignments" description="Assignments for MIT 16.S893: a research-proposal one-pager and a Kato & Matsuda (2022) figure-recreation study.">
+  <article class="assignments-page">
+    <section class="hero" aria-labelledby="assignments-title">
+      <h1 id="assignments-title">Assignments</h1>
+      <p class="lede">Coursework for 16.S893: a one-page research proposal and a figure-recreation study.</p>
+      <div class="hero-actions">
+        <a class="text-link" href="#one-pager">Assignment 1 · One-pager</a>
+        <a class="text-link" href="#figure-recreation">Assignment 2 · Figure recreation</a>
+      </div>
+    </section>
+
+    <!-- ========================= ASSIGNMENT 1 ========================= -->
+    <section id="one-pager" class="split-section" aria-labelledby="one-pager-title">
+      <div>
+        <p class="section-label">01 / ONE-PAGER</p>
+        <h2 id="one-pager-title">Research proposal.</h2>
+      </div>
+      <div class="body-copy">
+        <p>A one-pager motivating the need for an AI-assisted meshing workflow for hypersonic CFD and the proposed verification metrics &mdash; near-wall <i>y</i><sup>+</sup>, geometric mesh checks (skewness, orthogonality, aspect ratio, volume validity), and grid convergence in surface pressure and heat flux via Richardson extrapolation and GCI &mdash; applied to the RAM-C II blunt body in Pointwise/Glyph and US3D.</p>
+        <div class="action-row">
+          <button class="proposal-button" type="button" data-open-proposal>Open PDF <span aria-hidden="true">↗</span></button>
+          <a class="text-link" href={onePagerRepoUrl} target="_blank" rel="noreferrer">LaTeX source on GitHub <span aria-hidden="true">↗</span></a>
+          <a class="text-link" href={onePagerPdfRepoUrl} target="_blank" rel="noreferrer">PDF on GitHub <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="pdf-preview" aria-label="One-pager PDF preview">
+      <div class="pdf-frame">
+        <iframe src={proposalUrl} title="One-pager proposal PDF preview"></iframe>
+      </div>
+      <p class="caption">Embedded preview of <code>assignments/one_pager/main.pdf</code>. If the viewer does not render, use <a href={proposalUrl} target="_blank" rel="noreferrer">Open PDF</a>.</p>
+    </section>
+
+    <!-- ========================= ASSIGNMENT 2 ========================= -->
+    <section id="figure-recreation" class="split-section" aria-labelledby="figure-recreation-title">
+      <div>
+        <p class="section-label">02 / FIGURE RECREATION</p>
+        <h2 id="figure-recreation-title">Reproducing Kato &amp; Matsuda's Teflon ablation figures.</h2>
+      </div>
+      <div class="body-copy">
+        <p>Kato and Matsuda (2022) derive a 1D quasi-steady analytical model for non-charring Teflon ablation that accounts for amorphous and crystalline regions, temperature-dependent properties, surface recession, and latent heat at the phase interface.</p>
+        <p>Figures 6 and 7 are reproduced from the model and compared against the published results. Figure&nbsp;6 is the steady temperature profile through the ablating layer at a 950&nbsp;K surface. Figure&nbsp;7 is the amorphous-layer thickness as a function of ablation velocity for 900, 950, and 1000&nbsp;K surfaces.</p>
+      </div>
+    </section>
+
+    <section class="method-grid" aria-label="Reproduction methods">
+      <article>
+        <p class="card-label">ANALYTICAL</p>
+        <h3>Integral solution</h3>
+        <p><code>kato_matsuda.py</code> evaluates the paper's analytical integral. Figure&nbsp;6 amorphous-layer thickness is <b>0.637199&nbsp;mm</b> versus the paper's rounded <b>0.64&nbsp;mm</b>.</p>
+      </article>
+      <article>
+        <p class="card-label">FINITE DIFFERENCE</p>
+        <h3>Independent discretization</h3>
+        <p><code>finite_difference.py</code> discretizes the original quasi-steady energy equation. Across Figure&nbsp;6, the maximum difference from the analytical solution is <b>0.0754&nbsp;K</b> (RMSE <b>0.0081&nbsp;K</b>).</p>
+      </article>
+      <article>
+        <p class="card-label">CONTINUOUS SOLVER</p>
+        <h3>Adaptive collocation</h3>
+        <p><code>continuous_reference.py</code> solves the original ODE directly. Maximum Figure&nbsp;6 difference from the analytical solution is <b>&asymp;&nbsp;8.6&times;10<sup>&minus;9</sup>&nbsp;K</b>, within the requested solver tolerance.</p>
+      </article>
+      <article>
+        <p class="card-label">FIGURE 7 THICKNESSES</p>
+        <h3>Surface-temperature sweep</h3>
+        <table class="mini-table">
+          <thead><tr><th>T<sub>s</sub></th><th>Layer</th></tr></thead>
+          <tbody>
+            <tr><td>900&nbsp;K</td><td>0.600428&nbsp;mm</td></tr>
+            <tr><td>950&nbsp;K</td><td>0.637199&nbsp;mm</td></tr>
+            <tr><td>1000&nbsp;K</td><td>0.665689&nbsp;mm</td></tr>
+          </tbody>
+        </table>
+      </article>
+    </section>
+
+    <section class="figure-preview" aria-label="Figure 6 and Figure 7 overlays">
+      <div class="figure-grid">
+        <figure>
+          <img src={figure6Url} alt="Figure 6 overlay: reproduction plotted on top of the published figure." loading="lazy" />
+          <figcaption><b>Figure 6 overlay.</b> Reproduced temperature profile overlaid on the published figure at a 950&nbsp;K surface.</figcaption>
+        </figure>
+        <figure>
+          <img src={figure7Url} alt="Figure 7 overlay: reproduction plotted on top of the published figure." loading="lazy" />
+          <figcaption><b>Figure 7 overlay.</b> Reproduced amorphous-layer thickness overlaid on the published figure at 900, 950, and 1000&nbsp;K surfaces.</figcaption>
+        </figure>
+      </div>
+      <div class="action-row">
+        <a class="text-link" href={figRecRepoUrl} target="_blank" rel="noreferrer">Project folder on GitHub <span aria-hidden="true">↗</span></a>
+        <a class="text-link" href={figRecPlotsUrl} target="_blank" rel="noreferrer">Plot scripts &amp; outputs <span aria-hidden="true">↗</span></a>
+        <a class="text-link" href={figRecWriteupUrl} target="_blank" rel="noreferrer">LaTeX derivation <span aria-hidden="true">↗</span></a>
+        <a class="text-link" href={figRecPaperDirUrl} target="_blank" rel="noreferrer">Source paper <span aria-hidden="true">↗</span></a>
+      </div>
+    </section>
+
+  </article>
+
+  <dialog id="proposal-dialog" class="proposal-dialog" aria-labelledby="proposal-dialog-title">
+    <div class="proposal-dialog-header">
+      <div><p class="section-label">ASSIGNMENT 1</p><h2 id="proposal-dialog-title">One-Pager: AI-Assisted CFD Meshing and Verification</h2></div>
+      <button type="button" class="close-dialog" data-close-proposal>Close</button>
+    </div>
+    <iframe src={proposalUrl} title="One-pager PDF"></iframe>
+    <div class="proposal-dialog-footer">
+      <a href={proposalUrl} target="_blank" rel="noreferrer">Open in a new tab</a>
+      <a href={proposalUrl} download>Download PDF</a>
+    </div>
+  </dialog>
+
+  <script>
+    const proposalDialog = document.querySelector<HTMLDialogElement>('#proposal-dialog');
+    document.querySelectorAll<HTMLButtonElement>('[data-open-proposal]').forEach((button) => {
+      button.addEventListener('click', () => proposalDialog?.showModal());
+    });
+    document.querySelector<HTMLButtonElement>('[data-close-proposal]')?.addEventListener('click', () => proposalDialog?.close());
+    proposalDialog?.addEventListener('click', (event) => {
+      if (event.target === proposalDialog) proposalDialog.close();
+    });
+  </script>
+
+  <style>
+    .assignments-page { --warm:#c49a3a; --slate:#202522; --red:#a33e36; }
+    .hero { padding-bottom:3rem; }
+    .section-label,.card-label { font:600 .7rem/1.2 'IBM Plex Mono',monospace; letter-spacing:.14em; color:var(--red); }
+    .hero h1 { margin:0; font-family:var(--font-display); font-size:clamp(2.4rem,4.6vw,3.6rem); font-weight:400; line-height:1; letter-spacing:-.04em; color:var(--red); }
+    .lede { max-width:40rem; margin-top:1rem; color:#5d645f; font-size:1rem; line-height:1.7; }
+    .lede code { font-family:'IBM Plex Mono',monospace; font-size:.9em; }
+    .hero-actions { display:flex; flex-wrap:wrap; align-items:center; gap:1rem 1.6rem; margin-top:1.25rem; font:500 .72rem 'IBM Plex Mono',monospace; }
+    .text-link { border-bottom:1px solid var(--slate); padding-bottom:.25rem; color:var(--slate); white-space:nowrap; }
+    .text-link:hover { color:var(--red); border-color:var(--red); }
+    .proposal-button { border:1px solid #5d645f; background:#5d645f; padding:.65rem .85rem; color:#faf9f5; font:500 .72rem 'IBM Plex Mono',monospace; transition:background .2s,color .2s,border-color .2s; }
+    .proposal-button:hover { background:var(--red); border-color:var(--red); }
+    .split-section { display:grid; grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr); gap:4rem; border-top:1px solid #c7cec8; padding:4.5rem 0 2.5rem; }
+    h2 { margin-top:.8rem; font-family:var(--font-display); font-size:clamp(1.9rem,3.6vw,3rem); font-weight:400; line-height:1.05; letter-spacing:-.045em; }
+    .body-copy { color:#5d645f; font-size:1rem; line-height:1.8; }
+    .body-copy p + p { margin-top:1rem; }
+    .body-copy code { font-family:'IBM Plex Mono',monospace; font-size:.9em; color:var(--slate); }
+    .action-row { display:flex; flex-wrap:wrap; align-items:center; gap:1rem 1.6rem; margin-top:1.6rem; font:500 .72rem 'IBM Plex Mono',monospace; }
+    .pdf-preview { padding:1rem 0 4.5rem; }
+    .pdf-frame { border:1px solid #c7cec8; background:#faf9f5; }
+    .pdf-frame iframe { display:block; width:100%; height:min(85vh,46rem); border:0; background:white; }
+    .pdf-preview .caption { margin-top:.9rem; color:#5d645f; font:500 .72rem/1.6 'IBM Plex Mono',monospace; }
+    .pdf-preview .caption a { border-bottom:1px solid var(--slate); color:var(--slate); }
+    .method-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; margin:0 0 4rem; border:1px solid #c7cec8; background:#c7cec8; }
+    .method-grid article { padding:1.4rem 1.4rem; background:#faf9f5; }
+    .method-grid h3 { margin-top:1rem; font-family:var(--font-display); font-size:1.25rem; font-weight:400; line-height:1.1; }
+    .method-grid p { margin-top:.65rem; color:#5d645f; font-size:.86rem; line-height:1.65; }
+    .method-grid b { color:var(--slate); font-weight:600; }
+    .mini-table { margin-top:.85rem; width:100%; border-collapse:collapse; font:500 .78rem 'IBM Plex Mono',monospace; color:var(--slate); }
+    .mini-table th,.mini-table td { border-bottom:1px solid #c7cec8; padding:.35rem .25rem; text-align:left; }
+    .mini-table th { color:var(--red); font-weight:600; letter-spacing:.08em; font-size:.68rem; }
+    .figure-preview { border-top:1px solid #c7cec8; padding:3rem 0 4.5rem; }
+    .figure-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; }
+    .figure-grid figure { margin:0; border:1px solid #c7cec8; padding:1rem; background:#faf9f5; }
+    .figure-grid img { display:block; width:100%; height:auto; }
+    .figure-grid figcaption { margin-top:.9rem; color:#5d645f; font:500 .74rem/1.65 'IBM Plex Mono',monospace; }
+    .figure-grid figcaption b { color:var(--slate); }
+    .figure-preview .action-row { margin-top:1.5rem; }
+    .public-boundary { margin:0 calc(50% - 50vw); padding:3rem max(1.25rem,calc((100vw - 1024px)/2)); border-top:1px solid #cfd2ca; background:#faf9f5; text-align:center; }
+    .public-boundary p:last-child { max-width:48rem; margin:.8rem auto 0; color:#5d645f; font-size:.86rem; line-height:1.7; }
+    .proposal-dialog { width:min(72rem,calc(100vw - 2rem)); height:min(52rem,calc(100vh - 2rem)); border:1px solid #9ba39c; padding:0; color:#1d292d; background:#faf9f5; }
+    .proposal-dialog::backdrop { background:rgb(32 37 34 / .55); }
+    .proposal-dialog-header { display:flex; align-items:start; justify-content:space-between; gap:2rem; border-bottom:1px solid #c7cec8; padding:1.25rem 1.4rem; }
+    .proposal-dialog-header h2 { margin-top:.45rem; font-size:1.35rem; }
+    .close-dialog { border-bottom:1px solid var(--slate); padding:.25rem 0; color:var(--slate); font:500 .7rem 'IBM Plex Mono',monospace; }
+    .proposal-dialog iframe { display:block; width:100%; height:calc(100% - 8.2rem); border:0; background:white; }
+    .proposal-dialog-footer { display:flex; gap:1.25rem; padding:1rem 1.4rem; font:500 .7rem 'IBM Plex Mono',monospace; }
+    .proposal-dialog-footer a { border-bottom:1px solid var(--slate); color:var(--slate); }
+    @media (max-width:900px) {
+      .split-section { grid-template-columns:1fr; gap:1.75rem; }
+      .method-grid { grid-template-columns:1fr 1fr; }
+      .figure-grid { grid-template-columns:1fr; }
+    }
+    @media (max-width:600px) {
+      .method-grid { grid-template-columns:1fr; }
+      .hero h1 { font-size:2.4rem; }
+      .proposal-dialog { width:calc(100vw - 1rem); height:calc(100vh - 1rem); }
+    }
+  </style>
+</BaseLayout>
