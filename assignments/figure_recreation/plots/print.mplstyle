@@ -1,0 +1,14 @@
+font.family: sans-serif
+font.sans-serif: DejaVu Sans, Arial, Liberation Sans
+font.size: 9
+axes.labelsize: 10
+axes.linewidth: 0.8
+axes.grid: False
+xtick.direction: in
+ytick.direction: in
+xtick.top: True
+ytick.right: True
+lines.linewidth: 1.2
+legend.frameon: False
+savefig.dpi: 300
+savefig.bbox: standard

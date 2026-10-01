@@ -1,0 +1,66 @@
+{
+  "description": "Errors use the analytical quadrature solution as the reference. Relative error uses absolute temperature in kelvin; normalized RMSE uses the temperature span sampled in each case.",
+  "interface_depth": {
+    "computed_mm": 0.6371992404788029,
+    "paper_rounded_mm": 0.64,
+    "literal_percent_difference": 0.43761867518704245
+  },
+  "cases": {
+    "figure6_Ts_950K": {
+      "finite_difference": {
+        "max_absolute_K": 0.07534704582371887,
+        "rmse_K": 0.00812601751711391,
+        "max_relative_percent": 0.008179048214426278,
+        "normalized_rmse_percent": 0.0012999417533389936
+      },
+      "continuous_reference": {
+        "max_absolute_K": 8.581082511227578e-09,
+        "rmse_K": 1.7864811949188326e-09,
+        "max_relative_percent": 2.0692713729666294e-09,
+        "normalized_rmse_percent": 2.857883941228247e-10
+      }
+    },
+    "figure7_Ts_900K": {
+      "finite_difference": {
+        "max_absolute_K": 0.049983821236764925,
+        "rmse_K": 0.008813290895871819,
+        "max_relative_percent": 0.00558312479703112,
+        "normalized_rmse_percent": 0.001961168332775288
+      },
+      "continuous_reference": {
+        "max_absolute_K": 4.950152288074605e-09,
+        "rmse_K": 1.3899568470709167e-09,
+        "max_relative_percent": 9.925389528322543e-10,
+        "normalized_rmse_percent": 3.0929869269111566e-10
+      }
+    },
+    "figure7_Ts_950K": {
+      "finite_difference": {
+        "max_absolute_K": 0.09244102001071042,
+        "rmse_K": 0.012227922638508719,
+        "max_relative_percent": 0.009793587113013546,
+        "normalized_rmse_percent": 0.002463381850242312
+      },
+      "continuous_reference": {
+        "max_absolute_K": 4.856815394305158e-09,
+        "rmse_K": 1.414629368377672e-09,
+        "max_relative_percent": 9.757357709257997e-10,
+        "normalized_rmse_percent": 2.849848182639709e-10
+      }
+    },
+    "figure7_Ts_1000K": {
+      "finite_difference": {
+        "max_absolute_K": 0.15848237623697514,
+        "rmse_K": 0.018981660779474687,
+        "max_relative_percent": 0.01597314933046394,
+        "normalized_rmse_percent": 0.0034890871800094007
+      },
+      "continuous_reference": {
+        "max_absolute_K": 4.800483566214098e-09,
+        "rmse_K": 1.3809715705596255e-09,
+        "max_relative_percent": 9.669271327533893e-10,
+        "normalized_rmse_percent": 2.538413397423691e-10
+      }
+    }
+  }
+}
