@@ -42,6 +42,15 @@ const entries = [
       `After meeting with my advisor, Professor Harris, last Monday, I finalized the agent-assisted meshing procedure in my one-pager. I also refined the website so it reflects that same procedure and better shows what I am planning to do.`,
     ],
   },
+  {
+    day: 'WEEK 3: 10/02/2026',
+    title: 'Recreating a figure from an ablation paper.',
+    text: [
+      `The hardest part was finding a paper that I could actually reproduce. In CFD, the equations are only a starting point, with other choices needed such as the mesh, discretization, numerical method, closure model, and convergence criteria.`,
+      `I chose Kato and Matsuda's analytical solution for one dimensional, quasi steady, non charring ablation in a semi infinite solid because the solution could be evaluated directly and checked against separate numerical solutions. I think analytical work is more common for material effects than for fluids because some material problems reduce to one dimensional conduction and energy balances with explicit property models. Fluid predictions are usually more dependent on geometry, transport, turbulence, shocks, and numerical boundary conditions.`,
+      `The only prompting I gave GPT-5.6 Terra was to use TDD and red green refactoring to independently recreate the result. It created the full test and source structure in less than ten minutes. Afterward, I used follow up prompts to ask how the solution was created, calculate error metrics, overlay our curves on the published figures, and verify that the analytical solution agreed with an independent finite difference solution. I also asked it to write a report describing the code and results. The finite difference results stayed within 0.16 K of the analytical solution, with a normalized RMSE below 0.004 percent.`, 
+    ],
+  },
 ];
 ---
 <BaseLayout title="Dev log" description="Development notes for Madison Taylor Hobbs's AI research portfolio.">
