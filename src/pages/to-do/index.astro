@@ -1,0 +1,149 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="To-do" description="A planning board for Madison Taylor Hobbs's class notes and tasks.">
+  <section class="max-w-5xl">
+    <p class="font-mono text-xs tracking-[0.14em] text-red-accent">WORKBOARD</p>
+    <h1 class="mt-5 font-display text-5xl font-medium tracking-[-0.06em] sm:text-6xl">Things to do.</h1>
+    <p class="mt-6 max-w-2xl leading-7 text-graphite">A small place for loose notes, questions, and tasks that do not belong in the project plan yet.</p>
+
+    <div id="board">
+      <div class="mt-12 border-y border-rule py-5">
+        <label for="quick-note" class="font-mono text-xs tracking-[0.12em] text-red-accent">QUICK CAPTURE</label>
+        <div class="mt-3 flex flex-col gap-3 sm:flex-row">
+          <textarea id="quick-note" rows="2" class="min-h-12 flex-1 border border-rule bg-white/40 px-3 py-2 text-sm leading-6 outline-none focus:border-red-accent" placeholder="Write one note per line. Add #procedural or #conceptual if useful."></textarea>
+          <button id="add-notes" type="button" class="self-start border border-ink px-4 py-2 font-mono text-xs transition-colors hover:bg-ink hover:text-paper">Add notes</button>
+        </div>
+        <div class="mt-4 flex flex-wrap gap-x-5 gap-y-2 font-mono text-[11px] text-graphite">
+          <button id="export-notes" type="button" class="border-b border-transparent hover:border-slate-accent">Export Markdown</button>
+          <button id="clear-notes" type="button" class="border-b border-transparent hover:border-red-accent hover:text-red-accent">Clear all notes</button>
+          <span id="save-status" role="status">Saved in this browser.</span>
+        </div>
+      </div>
+
+      <div class="mt-8 flex items-baseline justify-between gap-4">
+        <p class="font-mono text-xs tracking-[0.12em] text-red-accent">KANBAN BOARD</p>
+        <p class="font-mono text-[11px] text-graphite">Drag cards between columns</p>
+      </div>
+      <div id="columns" class="mt-4 flex snap-x gap-4 overflow-x-auto pb-5"></div>
+      <p class="mt-6 font-mono text-[11px] leading-5 text-graphite">Drag a note to another category, or use its category menu. Notes are stored only in this browser.</p>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  const STORAGE_KEY = 'mthobbs-to-do-notes';
+  const categories = ['Inbox', 'Procedural', 'Conceptual', 'Assignments', 'Website', 'Someday', 'Done'];
+
+  const quickNote = document.querySelector('#quick-note');
+  const columns = document.querySelector('#columns');
+  const saveStatus = document.querySelector('#save-status');
+  let notes = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+
+  const escapeHtml = (value) => String(value)
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#039;');
+
+  const save = () => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(notes));
+    saveStatus.textContent = 'Saved just now.';
+    window.setTimeout(() => { saveStatus.textContent = 'Saved in this browser.'; }, 1800);
+  };
+
+  const categoryOptions = (selected) => categories
+    .map((category) => `<option value="${category}" ${category === selected ? 'selected' : ''}>${category}</option>`)
+    .join('');
+
+  const render = () => {
+    columns.innerHTML = categories.map((category) => {
+      const categoryNotes = notes.filter((note) => note.category === category);
+      return `<section class="paper-grid min-h-[28rem] w-[19rem] flex-none snap-start border border-rule p-4 sm:w-[21rem]" data-category="${category}">
+        <div class="flex items-baseline justify-between gap-3 border-b border-rule pb-4">
+          <h2 class="font-mono text-xs tracking-[0.1em] text-red-accent">${category.toUpperCase()}</h2>
+          <span class="font-mono text-[11px] text-graphite">${categoryNotes.length}</span>
+        </div>
+        <div class="mt-4 grid min-h-80 content-start gap-3 rounded-sm border border-dashed border-rule p-2" data-dropzone="${category}">
+          ${categoryNotes.length ? categoryNotes.map((note) => `<article class="cursor-grab border border-rule bg-paper p-4 transition-colors hover:border-red-accent active:cursor-grabbing" draggable="true" data-note-id="${note.id}">
+            <p class="whitespace-pre-wrap text-sm leading-6">${escapeHtml(note.text)}</p>
+            <div class="mt-3 flex items-center justify-between gap-2 border-t border-rule pt-2">
+              <label class="sr-only" for="category-${note.id}">Move note</label>
+              <select id="category-${note.id}" class="min-w-0 border-0 bg-transparent p-0 font-mono text-[10px] text-graphite outline-none focus:text-ink" data-move="${note.id}">${categoryOptions(note.category)}</select>
+              <button type="button" class="font-mono text-[10px] text-graphite hover:text-red-accent" data-delete="${note.id}">Delete</button>
+            </div>
+          </article>`).join('') : '<p class="font-mono text-[11px] leading-5 text-graphite">Drop notes here.</p>'}
+        </div>
+      </section>`;
+    }).join('');
+    addBoardListeners();
+  };
+
+  const addBoardListeners = () => {
+    document.querySelectorAll('[data-delete]').forEach((button) => {
+      button.addEventListener('click', () => {
+        notes = notes.filter((note) => note.id !== button.dataset.delete);
+        save();
+        render();
+      });
+    });
+    document.querySelectorAll('[data-move]').forEach((select) => {
+      select.addEventListener('change', () => {
+        const note = notes.find((item) => item.id === select.dataset.move);
+        if (note) note.category = select.value;
+        save();
+        render();
+      });
+    });
+    document.querySelectorAll('[data-note-id]').forEach((card) => {
+      card.addEventListener('dragstart', (event) => event.dataTransfer.setData('text/plain', card.dataset.noteId));
+    });
+    document.querySelectorAll('[data-dropzone]').forEach((zone) => {
+      zone.addEventListener('dragover', (event) => event.preventDefault());
+      zone.addEventListener('drop', (event) => {
+        event.preventDefault();
+        const note = notes.find((item) => item.id === event.dataTransfer.getData('text/plain'));
+        if (note) note.category = zone.dataset.dropzone;
+        save();
+        render();
+      });
+    });
+  };
+
+  document.querySelector('#add-notes').addEventListener('click', () => {
+    const newNotes = quickNote.value.split('\n').map((text) => text.trim()).filter(Boolean).map((text) => {
+      const tag = text.match(/#(procedural|conceptual|assignment|website|someday|done)\b/i);
+      return {
+        id: `${Date.now()}-${Math.random().toString(16).slice(2)}`,
+        text: text.replace(/\s+#(?:procedural|conceptual|assignment|website|someday|done)\b/ig, '').trim(),
+        category: tag ? ({ assignment: 'Assignments', ...Object.fromEntries(categories.map((item) => [item.toLowerCase(), item])) }[tag[1].toLowerCase()] || 'Inbox') : 'Inbox',
+      };
+    });
+    notes = [...notes, ...newNotes];
+    quickNote.value = '';
+    save();
+    render();
+  });
+
+  document.querySelector('#export-notes').addEventListener('click', () => {
+    const markdown = categories.map((category) => `## ${category}\n\n${notes.filter((note) => note.category === category).map((note) => `- ${note.text}`).join('\n') || '- Nothing here yet.'}`).join('\n\n');
+    const blob = new Blob([`# To-do notes\n\n${markdown}\n`], { type: 'text/markdown' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'to-do-notes.md';
+    link.click();
+    URL.revokeObjectURL(link.href);
+  });
+
+  document.querySelector('#clear-notes').addEventListener('click', () => {
+    if (window.confirm('Delete all notes from this browser?')) {
+      notes = [];
+      save();
+      render();
+    }
+  });
+
+  render();
+</script>
