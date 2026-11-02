@@ -51,6 +51,16 @@ const entries = [
       `The only prompting I gave GPT-5.6 Terra was to use TDD and red green refactoring to independently recreate the result. It created the full test and source structure in less than ten minutes. Afterward, I used follow up prompts to ask how the solution was created, calculate error metrics, overlay our curves on the published figures, and verify that the analytical solution agreed with an independent finite difference solution. I also asked it to write a report describing the code and results. The finite difference results stayed within 0.16 K of the analytical solution, with a normalized RMSE below 0.004 percent.`, 
     ],
   },
+  {
+    day: 'WEEK 4: 10/09/2026',
+    title: 'Thinking about mesh adaptation.',
+    text: [
+      `This week I was still very much in the brainstorming stage. I kept coming back to the question of whether the agent should only help make an initial mesh, or whether the more interesting goal is for it to help decide how a mesh should change after a run. The version I was imagining was an outer loop: read literature and project notes, read previous run summaries, read human comments on whether the mesh looked acceptable, propose the next meshing experiment, call the meshing workflow again, and then inspect the new output. That sounded like the kind of loop where an agent could be useful, because there are a lot of small decisions and pieces of context to keep track of.`,
+      `I talked with my lab mate who works on SANS, and that helped me understand the adaptation loop more concretely. I had been using the phrase mesh refinement too loosely, mostly to mean that an agent could look at a solution and decide where more cells were needed. In SANS, the process is tied to a selected output quantity of interest. After the primal solve, the adjoint for that output is computed, and the dual-weighted residual is used to estimate how local mesh error contributes to the output error. Candidate mesh changes, such as edge splits, can then be evaluated against that estimate, and the result is used to build an anisotropic metric field for the next mesh. That distinction was useful because it made the refinement problem less like a visual judgment task and more like an output-error estimation problem.`,
+      `That was useful, but it also made the adaptive-loop version of this project feel much too large for now. With US3D, I don't even know if this is feasible on the timescale of more than one semester. The solver is already compiled, and I do not have a clear way to tell whether the derivative information I would need is available, or how I would access it at different timesteps. The adjoint part seems like it would require solver-level access that I do not currently have. This reinforced that adaptive meshing will absolutely not be in the first version of my project.`,
+      `My for-now scope goal is the forward part of the loop. I need to show that the agent can help reproduce or match a by-hand Pointwise meshing process, produce the expected files, and give me a trustworthy (I still have to figure out what that means to me in the context of this project) report of the assumptions and sources it used.`,
+    ],
+  },
 ];
 ---
 <BaseLayout title="Dev log" description="Development notes for Madison Taylor Hobbs's AI research portfolio.">
