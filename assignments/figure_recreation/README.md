@@ -6,14 +6,17 @@ calculation includes amorphous and crystalline material regions,
 temperature-dependent properties, surface recession, and latent heat at the
 phase interface.
 
-The original paper is stored in `paper/kato-matsuda.pdf`.
+The original paper is available through its DOI:
+<https://doi.org/10.1016/j.tsep.2021.101181>. The publisher PDF is not distributed
+in this repository. For local overlay generation, obtain a copy through authorized
+access and save it as `paper/kato-matsuda.pdf` (ignored by Git).
 
 ## Directory layout
 
 ```text
 figure_recreation/
 ├── paper/
-│   └── kato-matsuda.pdf
+│   └── kato-matsuda.pdf  # optional local copy; not tracked
 ├── plots/
 │   ├── plot_figure6.py
 │   ├── plot_figure7.py
@@ -78,8 +81,9 @@ uv run python -m plots.plot_figure7
 uv run python -m plots.plot_paper_overlays
 ```
 
-The overlay command also requires `pdftoppm` from Poppler. The generated error
-metrics are written to `comparison_metrics.json`.
+The overlay command requires the local paper copy described above and
+`pdftoppm` from Poppler. The generated error metrics are written to
+`comparison_metrics.json`.
 
 ## Build the write-up
 

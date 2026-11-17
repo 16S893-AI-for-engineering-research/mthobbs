@@ -5,6 +5,9 @@
 # dependencies
 /node_modules/
 
+# Publisher paper: keep any authorized copy local only
+/assignments/figure_recreation/paper/kato-matsuda.pdf
+
 # LaTeX build artifacts
 *.aux
 *.bbl
