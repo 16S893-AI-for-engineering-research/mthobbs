@@ -17,6 +17,14 @@
 *.log
 *.out
 *.synctex.gz
+*.nav
+*.snm
+*.toc
+*.vrb
+*.xdv
+*.bcf
+*.run.xml
+/assignments/final_presentation/final_talk/main.pdf
 
 # local environment files
 .env
